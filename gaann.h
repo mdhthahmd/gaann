@@ -26,13 +26,7 @@
 
 #include <stdio.h>
 
-typedef struct population {
-    individual **individuals;
-    double **fitness;
-    // dataset* input;
-    // dataset* output;
 
-} population;
 
 typedef struct individual {
     int inputs;             /* Number of input neurones      */
@@ -41,15 +35,42 @@ typedef struct individual {
     int outputs;            /* Number of output neurons.     */
     int weights;            /* Total of weigths(chromosomes) */
     int neurons;            /* Total Number of neurones      */
-    double *weight;         /* The weights(genoytpe)         */
+    double *weight;         /* The weights(genotype)         */
     double *output;         /* Output                        */
 } individual;
+
+typedef struct population {
+    individual **individuals;
+    double **fitness;
+    // dataset* input;
+    // dataset* output;
+
+} population;
 
 individual *create   ( int inputs, int hidden_layers, int hidden, int outputs );
 double     *fitness  ( individual const *ann, double const *inputs );
 individual *mutate   ( individual *individual );
 void       *crossover( individual *mom, individual *dad );
 void       kill      ( individual *individual );
+
+/* ===============================================================================
+    DATA SET 
+=================================================================================*/
+
+
+typedef struct dataMember {
+	double*			inputs;			/* The input data */
+	double*			targets;		/* The target outputs */
+} dataMember;
+
+typedef struct dataset{
+	dataMember*		members;		/* The members of the dataset */
+	int 			numMembers;		/* The number of members in the set */
+	int 			numInputs;		/* The number of inputs in the set */
+	int 			numOutputs;		/* The number of outputs in the set */
+} dataset;
+
+dataset * loadData(char* filename);
 
 #endif
 
