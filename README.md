@@ -26,8 +26,8 @@ The program can accept any file that has data in the following format
 
 ### Running it
 ```
-git clone <url>
-cd <name>
+git clone https://github.com/mdhthahmd/gaann.git
+cd gaann
 make
 ```
 
